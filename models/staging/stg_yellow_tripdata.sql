@@ -15,7 +15,7 @@ select
     cast(tpep_dropoff_datetime as timestamp) as dropoff_datetime,
     
     -- trip info
-    store_and_fwd_flag,
+    cast(CASE WHEN store_and_fwd_flag = 'Y' THEN TRUE ELSE FALSE END AS BOOLEAN) as store_and_fwd_flag, -- casting boolean pra dar match com green_tripdata
     cast(passenger_count as integer) as passenger_count,
     cast(trip_distance as numeric) as trip_distance,
     -- yellow taxis são sempre "Street-hail" (não reservado e chamado na rua levantando a mão) -- 1 = Street-hail
