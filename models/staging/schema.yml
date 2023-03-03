@@ -5,8 +5,8 @@ sources:
     database: dtc-de-376416 
     schema: trips_data_all
     tables:
-      - name: green_tripdata_2021
-      - name: yellow_tripdata
+      - name: green_2022
+      - name: yellow_2022
 
 
 models:
@@ -100,6 +100,8 @@ models:
             description: Total amount of all tolls paid in trip.
           - name: Total_amount 
             description: The total amount charged to passengers. Does not include cash tips.
+          - name: Congestion_Surcharge 
+            description: Total amount collected in trip for NYS congestion surcharge.
 
     - name: stg_yellow_tripdata
       description: > 
@@ -192,3 +194,7 @@ models:
             description: Total amount of all tolls paid in trip.
           - name: Total_amount 
             description: The total amount charged to passengers. Does not include cash tips.
+          - name: Congestion_Surcharge 
+            description: Total amount collected in trip for NYS congestion surcharge.
+          - name: Airport_fee 
+            description: Value for pick up only at LaGuardia and John F. Kennedy Airports
