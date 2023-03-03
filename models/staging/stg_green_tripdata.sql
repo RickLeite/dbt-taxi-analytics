@@ -4,8 +4,8 @@
 
 with -- !!!
     tripdata as (
-        select *, row_number() over (partition by vendorid, lpep_pickup_datetime) as rn
-        from {{ source("staging", "green_tripdata") }}
+        select *, row_number() over (partition by cast(vendorid as integer), lpep_pickup_datetime) as rn
+        from {{ source("staging", "green_tripdata_2021") }}
         where vendorid is not null
     )
 select
@@ -21,7 +21,7 @@ select
     cast(lpep_dropoff_datetime as timestamp) as dropoff_datetime,
     
     -- trip info
-    store_and_fwd_flag,
+    cast(CASE WHEN store_and_fwd_flag = 'Y' THEN TRUE ELSE FALSE END AS BOOLEAN) as store_and_fwd_flag,
     cast(passenger_count as integer) as passenger_count,
     cast(trip_distance as numeric) as trip_distance,
     cast(trip_type as integer) as trip_type,
