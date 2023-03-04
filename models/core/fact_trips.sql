@@ -24,6 +24,7 @@ dim_zones as (
     select * from {{ ref('dim_zones') }}
     where borough != 'Unknown'
 )
+
 select 
     trips_unioned.tripid, 
     trips_unioned.vendorid, 
@@ -51,7 +52,8 @@ select
     trips_unioned.total_amount, 
     trips_unioned.payment_type, 
     trips_unioned.payment_type_description, 
-    trips_unioned.congestion_surcharge
+    trips_unioned.congestion_surcharge,
+    trips_unioned.airport_fee
 from trips_unioned
 inner join 
 dim_zones as pickup_zone
